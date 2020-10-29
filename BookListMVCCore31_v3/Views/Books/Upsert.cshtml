@@ -1,0 +1,56 @@
+﻿@model BookListMVCCore31_v3.Models.Book
+@{
+    ViewData["Title"] = "Upsert";
+}
+<br />
+<h1>@(Model.Book_ID != 0 ? "Edit" : "Create") Book</h1>
+
+<div class="border container" style="padding:30px">
+    <form method="post" asp-action="Upsert">@*action-method="Upsert" optional*@
+        @if (Model.Book_ID != 0)
+        {
+            <input type="hidden" asp-for="Book_ID" />
+        }
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Author"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="ISBN"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="ISBN" class="form-control" />
+                <span asp-validation-for="ISBN" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <button type="submit" class="btn btn-primary form-control">@(Model.Book_ID != 0 ? "Edit" : "Create")</button>
+            </div>
+            <div class="col-3">
+                <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts  
+{
+    <partial name="_ValidationScriptsPartial" />
+}
